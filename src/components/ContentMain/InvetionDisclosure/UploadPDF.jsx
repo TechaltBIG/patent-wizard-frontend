@@ -257,7 +257,8 @@ function UploadPDF() {
           bold letters and nothing else.
           <br />
           Provide me four options of title of the invention from above provided
-          content.
+          content & no extra content other that the titles is required. Give a
+          heading of "Invention title options are"
         </p>
         <form
           onSubmit={generateAnswer}

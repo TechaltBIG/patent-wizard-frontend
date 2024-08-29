@@ -173,7 +173,7 @@ const ClaimsDrafting = () => {
             className="btn btn-primary"
             disabled={generatingAnswer7}
           >
-            Generate Claims
+            Generate Claims/Abstract
           </button>
         </form>
         <div

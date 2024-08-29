@@ -135,7 +135,7 @@ const ClaimsDrafting = () => {
       <p style={{ display: "none" }}>{pdfText}</p>
 
       <div className="bg-gradient-to-r from-blue-50 to-blue-100 h-screen p-3 flex flex-col justify-center items-center">
-        <h3 style={{ color: "#36718b" }}>Claims/Abstract Drafting</h3>
+        <h3 style={{ color: "#36718b" }}>Claims/Abstract</h3>
         <p id="seventhQuestion" style={{ display: "none" }}>
           From above provided content generate 1.claims And 2.Abstract for
           drafting the patent for above invention. And provided content should

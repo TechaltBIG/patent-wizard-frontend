@@ -140,7 +140,8 @@ const ClaimsDrafting = () => {
           From above provided content generate 1.claims And 2.Abstract for
           drafting the patent for above invention. And provided content should
           only give complete answer using proper html tags & not even single
-          word is written without tag.
+          word is written without tag. And Abstract should be between 120 to 145
+          words.
           <br />
           And inline css must be used to make the UI good looking. Keep the font
           size of the text to 18px and of heading 22px.

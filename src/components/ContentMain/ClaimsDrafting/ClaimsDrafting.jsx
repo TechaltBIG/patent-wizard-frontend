@@ -137,10 +137,10 @@ const ClaimsDrafting = () => {
       <div className="bg-gradient-to-r from-blue-50 to-blue-100 h-screen p-3 flex flex-col justify-center items-center">
         <h3 style={{ color: "#36718b" }}>Claims Patent Drafting</h3>
         <p id="seventhQuestion" style={{ display: "none" }}>
-          From above provided content generate claims for drafting the patent
-          for above invention. And provided content should only give complete
-          answer using proper html tags & not even single word is writen outside
-          tags.
+          From above provided content generate 1.claims And 2.Abstract for
+          drafting the patent for above invention. And provided content should
+          only give complete answer using proper html tags & not even single
+          word is written without tag.
           <br />
           And inline css must be used to make the UI good looking. Keep the font
           size of the text to 18px and of heading 22px.

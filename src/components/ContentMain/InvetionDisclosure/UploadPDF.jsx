@@ -255,6 +255,9 @@ function UploadPDF() {
           Provide me the title of the invention of the above provided content.
           Provided content should only contain the Title of the invention in
           bold letters and nothing else.
+          <br />
+          Provide me four options of title of the invention from above provided
+          content.
         </p>
         <form
           onSubmit={generateAnswer}

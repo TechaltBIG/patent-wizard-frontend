@@ -532,7 +532,7 @@ function UploadPDF() {
           And provided content should only give complete answer using proper
           html tags & not even single word is written without tag. And also give
           the content with proper heading and ordered list with proper alignment
-          so that it looks good.
+          so that it looks good. And the provided content must be left aligned.
         </p>
         <form
           onSubmit={generateAnswer5}

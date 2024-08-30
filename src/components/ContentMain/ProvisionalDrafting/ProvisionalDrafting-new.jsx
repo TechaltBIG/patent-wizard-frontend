@@ -155,6 +155,12 @@ const ProvisionalDraftingnew = () => {
           And provided content should only give complete answer using proper
           html tags & not even single word is written without tag. And also give
           the content with proper heading and ordered list with proper alignment
+          so that it looks good. And provided text must align to the left side.
+          And the provided content must be left aligned.
+          <br />
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
           so that it looks good.
           <br />
           Start the content with first question, no extra content is needed
@@ -228,3 +234,4 @@ const ProvisionalDraftingnew = () => {
 };
 
 export default ProvisionalDraftingnew;
+

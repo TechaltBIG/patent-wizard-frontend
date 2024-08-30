@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
+// ******************************************
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+// ****************************************
 
 const ProvisionalDraftingnew = () => {
   const [pdfText, setPdfText] = useState("");
@@ -15,6 +19,63 @@ const ProvisionalDraftingnew = () => {
       setPdfText(storedPdfText);
     }
   }, []);
+
+  // ***********************************
+
+  const handleChange5 = (html) => {
+    setAnswer6(html);
+  };
+
+  const handleDownload = () => {
+    const blob = new Blob([answer6], { type: "text/html" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "editor-content.html";
+    link.click();
+  };
+
+  const handlePrint5 = () => {
+    const printWindow = window.open("", "_blank");
+    printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Print</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; }
+                    </style>
+                </head>
+                <body>${answer6}</body>
+            </html>
+        `);
+    printWindow.document.close();
+    setTimeout(() => {
+      printWindow.print();
+    }, 2000);
+  };
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline", "strike"], // Additional text formatting
+      [{ list: "ordered" }, { list: "bullet" }], // Lists
+      [{ indent: "-1" }, { indent: "+1" }], // Indentation
+      [{ align: [] }], // Text alignment
+      ["link", "image", "video"], // Links, Images, and Videos
+      [{ color: [] }, { background: [] }], // Text and background color
+      ["clean"], // Remove formatting
+    ],
+  };
+
+  const handleImageUpload = (file) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const range = this.quill.getSelection();
+      this.quill.insertEmbed(range.index, "image", reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // *************************
 
   //   ***************************ProvisionalText****************
 
@@ -91,8 +152,10 @@ const ProvisionalDraftingnew = () => {
           questions and not extra content is required apart from above mentioned
           questions.
           <br />
-          And also give the content with proper heading and ordered list with
-          proper alignment so that it looks good.
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
+          so that it looks good.
           <br />
           Start the content with first question, no extra content is needed
           <br />
@@ -134,13 +197,30 @@ const ProvisionalDraftingnew = () => {
           className="w-full md:w-3/3 lg:w-2/2 xl:w-3/3  rounded-lg bg-white shadow-lg transition-all duration-500 transform hover:scale-105"
           style={{ overflowY: "scroll" }}
         >
-          <ReactMarkdown
+          {/* <ReactMarkdown
             className="p-4"
             value={answer6}
             onChange={handleChange2}
           >
             {answer6}
-          </ReactMarkdown>
+          </ReactMarkdown> */}
+          <ReactQuill
+            value={answer6}
+            onChange={handleChange5}
+            modules={modules}
+          />
+          {/* <button onClick={handleDownload}>Download</button> */}
+          <button
+            className="btn btn-primary"
+            onClick={handlePrint5}
+            style={{
+              margin: "10px",
+              padding: "5px",
+              width: "200px",
+            }}
+          >
+            Print
+          </button>
         </div>
       </div>
     </div>

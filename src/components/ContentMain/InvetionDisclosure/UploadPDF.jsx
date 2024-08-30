@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import "./uploadPDF.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function UploadPDF() {
   const [file, setFile] = useState(null);
@@ -162,8 +164,41 @@ function UploadPDF() {
     setGeneratingAnswer5(false);
   }
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline", "strike"], // Additional text formatting
+      [{ list: "ordered" }, { list: "bullet" }], // Lists
+      [{ indent: "-1" }, { indent: "+1" }], // Indentation
+      [{ align: [] }], // Text alignment
+      ["link", "image", "video"], // Links, Images, and Videos
+      [{ color: [] }, { background: [] }], // Text and background color
+      ["clean"], // Remove formatting
+    ],
+  };
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleChanges1 = (html) => {
+    setAnswer(html);
+  };
+
+  const handleChanges2 = (html) => {
+    setAnswer2(html);
+  };
+
+  const handleChanges3 = (html) => {
+    setAnswer3(html);
+  };
+
+  const handleChanges4 = (html) => {
+    setAnswer4(html);
+  };
+
+  const handleChanges5 = (html) => {
+    setAnswer5(html);
   };
 
   const handleUpload = async () => {
@@ -172,11 +207,11 @@ function UploadPDF() {
 
     try {
       const response = await axios.post(
-        "https://patent-wizard-backend-techaltbig.onrender.com/upload",
+        "http://localhost:5000/upload",
         formData
       );
       alert(response.data.message);
-      setPdfText(response.data.text); // Set the extracted text here
+      setPdfText(response.data.text);
     } catch (error) {
       console.error(error);
       alert("Error uploading PDF");
@@ -229,6 +264,7 @@ function UploadPDF() {
         <h1 className="head-stl" style={{ color: "#36718b" }}>
           Invention Disclosure Form
         </h1>
+
         <input
           type="file"
           accept="application/pdf"
@@ -259,6 +295,11 @@ function UploadPDF() {
           Provide me four options of title of the invention from above provided
           content & no extra content other that the titles is required. Give a
           heading of "Invention title options are"
+          <br />
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
+          so that it looks good. And provided text must align to the left side.
         </p>
         <form
           onSubmit={generateAnswer}
@@ -288,7 +329,12 @@ function UploadPDF() {
           className="w-full md:w-3/3 lg:w-2/2 xl:w-3/3  rounded-lg bg-white shadow-lg transition-all duration-500 transform hover:scale-105"
           style={{ overflowY: "scroll" }}
         >
-          <ReactMarkdown className="p-4">{answer}</ReactMarkdown>
+          {/* <ReactMarkdown className="p-4">{answer}</ReactMarkdown> */}
+          <ReactQuill
+            value={answer}
+            onChange={handleChanges1}
+            modules={modules}
+          />
         </div>
       </div>
 
@@ -309,6 +355,11 @@ function UploadPDF() {
           working on the invention and nothing else. And also give the content
           with proper heading and ordered list with proper alignment so that it
           looks good.
+          <br />
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
+          so that it looks good.
         </p>
         <form
           onSubmit={generateAnswer2}
@@ -338,7 +389,12 @@ function UploadPDF() {
           className="w-full md:w-3/3 lg:w-2/2 xl:w-3/3  rounded-lg bg-white shadow-lg transition-all duration-500 transform hover:scale-105"
           style={{ overflowY: "scroll" }}
         >
-          <ReactMarkdown className="p-4">{answer2}</ReactMarkdown>
+          {/* <ReactMarkdown className="p-4">{answer2}</ReactMarkdown> */}
+          <ReactQuill
+            value={answer2}
+            onChange={handleChanges2}
+            modules={modules}
+          />
         </div>
       </div>
 
@@ -357,6 +413,11 @@ function UploadPDF() {
           Provided content should only contain the content related to prior art
           and nothing else. And also give the content with proper heading and
           ordered list with proper alignment so that it looks good.
+          <br />
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
+          so that it looks good.
         </p>
         <form
           onSubmit={generateAnswer3}
@@ -386,7 +447,12 @@ function UploadPDF() {
           className="w-full md:w-3/3 lg:w-2/2 xl:w-3/3  rounded-lg bg-white shadow-lg transition-all duration-500 transform hover:scale-105"
           style={{ overflowY: "scroll" }}
         >
-          <ReactMarkdown className="p-4">{answer3}</ReactMarkdown>
+          {/* <ReactMarkdown className="p-4">{answer3}</ReactMarkdown> */}
+          <ReactQuill
+            value={answer3}
+            onChange={handleChanges3}
+            modules={modules}
+          />
         </div>
       </div>
 
@@ -404,6 +470,11 @@ function UploadPDF() {
           content related to Novelty and Objectives and nothing else. And also
           give the content with proper heading and ordered list with proper
           alignment so that it looks good.
+          <br />
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
+          so that it looks good.
         </p>
         <form
           onSubmit={generateAnswer4}
@@ -433,7 +504,12 @@ function UploadPDF() {
           className="w-full md:w-3/3 lg:w-2/2 xl:w-3/3  rounded-lg bg-white shadow-lg transition-all duration-500 transform hover:scale-105"
           style={{ overflowY: "scroll" }}
         >
-          <ReactMarkdown className="p-4">{answer4}</ReactMarkdown>
+          {/* <ReactMarkdown className="p-4">{answer4}</ReactMarkdown> */}
+          <ReactQuill
+            value={answer4}
+            onChange={handleChanges4}
+            modules={modules}
+          />
         </div>
       </div>
 
@@ -452,6 +528,11 @@ function UploadPDF() {
           Drawings/Figures and nothing else. And also give the content with
           proper heading and ordered list with proper alignment so that it looks
           good.
+          <br />
+          And provided content should only give complete answer using proper
+          html tags & not even single word is written without tag. And also give
+          the content with proper heading and ordered list with proper alignment
+          so that it looks good.
         </p>
         <form
           onSubmit={generateAnswer5}
@@ -481,7 +562,12 @@ function UploadPDF() {
           className="w-full md:w-3/3 lg:w-2/2 xl:w-3/3  rounded-lg bg-white shadow-lg transition-all duration-500 transform hover:scale-105"
           style={{ overflowY: "scroll" }}
         >
-          <ReactMarkdown className="p-4">{answer5}</ReactMarkdown>
+          {/* <ReactMarkdown className="p-4">{answer5}</ReactMarkdown> */}
+          <ReactQuill
+            value={answer5}
+            onChange={handleChanges5}
+            modules={modules}
+          />
         </div>
       </div>
     </>

@@ -207,7 +207,7 @@ function UploadPDF() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://patent-wizard-backend-techaltbig.onrender.com/upload",
         formData
       );
       alert(response.data.message);

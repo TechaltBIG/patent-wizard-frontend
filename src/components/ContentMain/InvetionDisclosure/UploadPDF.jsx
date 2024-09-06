@@ -418,10 +418,10 @@ function UploadPDF() {
           html tags & not even single word is written without tag. And also give
           the content with proper heading and ordered list with proper alignment
           so that it looks good. And the provided content must be left
-          aligned.Answer must start with a heading of "Prior Art"
+          aligned.
           <br />
           And provided content should give complete answer using proper html
-          tags.
+          tags and answer must start with a heading of "Prior Art".
         </p>
         <form
           onSubmit={generateAnswer3}
